@@ -1,0 +1,57 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+
+  <PropertyGroup>
+    <TargetFramework>net46</TargetFramework>
+    <AssemblyName>Akavache.Sqlite3</AssemblyName>
+    <RootNamespace>Akavache.Sqlite3</RootNamespace>
+    <Description>Akavache Sqlite3</Description>
+    <PackageId>akavache.sqlite3</PackageId>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DefineConstants>$(DefineConstants);USE_SQLITEPCL_RAW;USE_NEW_REFLECTION_API</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DefineConstants>$(DefineConstants);NETFX_CORE;USE_SQLITEPCL_RAW;USE_NEW_REFLECTION_API</DefineConstants>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="1.1.11" />
+    <PackageReference Include="SQLitePCLRaw.core" Version="1.1.11" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="System.Reactive" Version="4.0.0" />
+    <ProjectReference Include="..\..\..\Splat\src\Splat\Splat.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Remove="EncryptedBlobCache.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="PerformanceGraphs.xlsx" />
+    <None Remove="sqlite-ng-notes.md" />
+    <None Remove="sqlite3-hint.txt" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Akavache.Core\Akavache.Core.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Include="content\AkavacheSqliteLinkerOverride.cs.pp">
+      <PackagePath>content\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="contentFiles\cs\any\AkavacheSqliteLinkerOverride.cs.pp">
+      <PackagePath>contentFiles\cs\any\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+
+</Project>
