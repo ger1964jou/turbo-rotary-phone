@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <PropertyGroup>
+    <!-- This is added to prevent forced migrations in Visual Studio 2012 and newer -->
+    <MinimumVisualStudioVersion>$(MSBuildToolsVersion)</MinimumVisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">$(MSBuildToolsVersion)</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <TargetFrameworkProfile />
+    <VsixType>v3</VsixType>
+    <IsProductComponent>false</IsProductComponent>
+    <ExtensionInstallationFolder>GitHub\GitHub</ExtensionInstallationFolder>
+    <XlfLanguages>cs-CZ;de-DE;es-ES;fr-FR;it-IT;ja-JP;ko-KR;pl-PL;pt-BR;ru-RU;tr-TR;zh-CN;zh-TW</XlfLanguages>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{11569514-5AE5-4B5B-92A2-F10B0967DE5F}</ProjectGuid>
+    <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GitHub.VisualStudio</RootNamespace>
+    <AssemblyName>GitHub.VisualStudio</AssemblyName>
+    <LangVersion>7.3</LangVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <ZipPackageCompressionLevel>Normal</ZipPackageCompressionLevel>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CreateVsixContainer>False</CreateVsixContainer>
+    <DeployExtension>False</DeployExtension>
+    <OutputPath>..\..\build\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugWithoutVsix|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CreateVsixContainer>False</CreateVsixContainer>
+    <DeployExtension>False</DeployExtension>
+    <OutputPath>..\..\build\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CreateVsixContainer>False</CreateVsixContainer>
+    <DeployExtension>True</DeployExtension>
+    <OutputPath>..\..\build\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseWithoutVsix|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CreateVsixContainer>False</CreateVsixContainer>
+    <DeployExtension>False</DeployExtension>
+    <OutputPath>..\..\build\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(BuildingInsideVisualStudio)' != 'true'">
+    <!-- Only deploy extension when building inside Visual Studio -->
+    <DeployExtension>False</DeployExtension>
+  </PropertyGroup>
+  <Import Project="..\common\signing.props" />
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="System.Xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\common\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="AssemblyResolverPackage.cs" />
+    <Compile Include="Commands\BlameLinkCommand.cs" />
+    <Compile Include="Commands\CreateGistCommand.cs" />
+    <Compile Include="Commands\OpenFromClipboardCommand.cs" />
+    <Compile Include="Commands\OpenFromUrlCommand.cs" />
+    <Compile Include="Commands\ShowMessageBoxCommand.cs" />
+    <Compile Include="Commands\LinkCommandBase.cs" />
+    <Compile Include="Commands\CopyLinkCommand.cs" />
+    <Compile Include="Commands\OpenLinkCommand.cs" />
+    <Compile Include="Commands\OpenIssueishDocumentCommand.cs" />
+    <Compile Include="Commands\SyncSubmodulesCommand.cs" />
+    <Compile Include="Commands\ShowCurrentPullRequestCommand.cs" />
+    <Compile Include="Commands\ShowGitHubPaneCommand.cs" />
+    <Compile Include="Commands\OpenPullRequestsCommand.cs" />
+    <Compile Include="Commands\GoToSolutionOrPullRequestFileCommand.cs" />
+    <Compile Include="GitContextPackage.cs" />
+    <Compile Include="GitHubPanePackage.cs" />
+    <Compile Include="Helpers\BindingPathHelper.cs" />
+    <Compile Include="IServiceProviderPackage.cs" />
+    <Compile Include="Helpers\ActiveDocumentSnapshot.cs" />
+    <Compile Include="Commands\AddConnectionCommand.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Helpers\Browser.cs" />
+    <Compile Include="Services\JsonConnectionCache.cs" />
+    <Compile Include="Services\LocalRepositories.cs" />
+    <Compile Include="Services\ShowDialogService.cs" />
+    <Compile Include="Services\UsageService.cs" />
+    <Compile Include="Services\UsageTracker.cs" />
+    <Compile Include="Services\VisualStudioUsageTracker.cs" />
+    <Compile Include="Services\VSGitExtFactory.cs" />
+    <Compile Include="Settings\Constants.cs" />
+    <Compile Include="Services\ConnectionManager.cs" />
+    <Compile Include="Services\Program.cs" />
+    <Compile Include="Services\SelectedTextProvider.cs" />
+    <Compile Include="Settings\generated\PackageSettingsGen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PackageSettingsGen.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\OptionsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Settings\PackageSettings.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="GitHubPackage.cs" />
+    <Compile Include="Services\GitHubServiceProvider.cs" />
+    <Compile Include="UI\AsyncPaneBase.cs" />
+    <Compile Include="UI\GitHubPane.cs" />
+    <Compile Include="UI\IssueishDocumentPane.cs" />
+    <Compile Include="UI\Settings\OptionsControl.xaml.cs">
+      <DependentUpon>OptionsControl.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VSPackage.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <ManifestResourceName>VSPackage</ManifestResourceName>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Settings\generated\PackageSettingsGen.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <CustomToolNamespace>GitHub.VisualStudio.Settings</CustomToolNamespace>
+      <LastGenOutput>PackageSettingsGen.cs</LastGenOutput>
+    </Content>
+    <None Include="..\common\settings.json">
+      <Link>Properties\settings.json</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <VSCTCompile Include="GitHub.VisualStudio.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+      <SubType>Designer</SubType>
+    </VSCTCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\common\CodeAnalysisDictionary.xml">
+      <Link>Properties\CodeAnalysisDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+    <Resource Include="Resources\default_org_avatar.png" />
+    <Resource Include="Resources\default_user_avatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\icons\clippy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\icons\link_external.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\icons\question.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\icons\mark_github_toolbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\icons\refresh.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\icons\arrow_right.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\icons\arrow_left.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\icons\git_pull_request.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\icons\mark_github.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Settings\OptionsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CustomToolNamespace>GitHub.VisualStudio.UI</CustomToolNamespace>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\submodules\octokit.net\Octokit\Octokit.csproj">
+      <Project>{08dd4305-7787-4823-a53f-4d0f725a07f3}</Project>
+      <Name>Octokit</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\submodules\reactiveui\src\ReactiveUI.Events.WPF\ReactiveUI.Events.WPF.csproj">
+      <Project>{86c54b27-717f-478c-ac8c-01f1c68a56c5}</Project>
+      <Name>ReactiveUI.Events.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\submodules\reactiveui\src\ReactiveUI.Wpf\ReactiveUI.Wpf.csproj">
+      <Project>{e899b03c-6e8e-4375-ab65-fc925d721d8b}</Project>
+      <Name>ReactiveUI.Wpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\submodules\reactiveui\src\ReactiveUI\ReactiveUI.csproj">
+      <Project>{a4f579f3-77d3-450a-aacc-f2653ef11e69}</Project>
+      <Name>ReactiveUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.Api\GitHub.Api.csproj">
+      <Project>{b389adaf-62cc-486e-85b4-2d8b078df763}</Project>
+      <Name>GitHub.Api</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.App\GitHub.App.csproj">
+      <Project>{1a1da411-8d1f-4578-80a6-04576bea2dc5}</Project>
+      <Name>GitHub.App</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.Exports.Reactive\GitHub.Exports.Reactive.csproj">
+      <Project>{e4ed0537-d1d9-44b6-9212-3096d7c3f7a1}</Project>
+      <Name>GitHub.Exports.Reactive</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.Exports\GitHub.Exports.csproj">
+      <Project>{9aea02db-02b5-409c-b0ca-115d05331a6b}</Project>
+      <Name>GitHub.Exports</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.Extensions\GitHub.Extensions.csproj">
+      <Project>{6afe2e2d-6db0-4430-a2ea-f5f5388d2f78}</Project>
+      <Name>GitHub.Extensions</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.Logging\GitHub.Logging.csproj">
+      <Project>{8d73575a-a89f-47cc-b153-b47dd06837f0}</Project>
+      <Name>GitHub.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.Resources\GitHub.Resources.csproj">
+      <Project>{54e8d71a-aabb-4698-95fe-7f11612b8e59}</Project>
+      <Name>GitHub.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.Services.Vssdk\GitHub.Services.Vssdk.csproj">
+      <Project>{2d3d2834-33be-45ca-b3cc-12f853557d7b}</Project>
+      <Name>GitHub.Services.Vssdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.UI\GitHub.UI.csproj">
+      <Project>{346384dd-2445-4a28-af22-b45f3957bd89}</Project>
+      <Name>GitHub.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.VisualStudio.UI\GitHub.VisualStudio.UI.csproj">
+      <Project>{d1dfbb0c-b570-4302-8f1e-2e3a19c41961}</Project>
+      <Name>GitHub.VisualStudio.UI</Name>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Madskristensen.VisualStudio.SDK" Version="14.3.75-pre" />
+    <PackageReference Include="Microsoft.VisualStudio.Telemetry">
+      <Version>15.0.691-master31907920</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VSSDK.BuildTools">
+      <Version>15.8.3252</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VSSDK.VsixSignTool">
+      <Version>14.1.24720</Version>
+    </PackageReference>
+    <PackageReference Include="LibGit2Sharp" Version="0.26.0" />
+  </ItemGroup>
+  <PropertyGroup>
+    <UseCodebase>true</UseCodebase>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != '' And '$(NCrunch)' != '1'" />
+  <Import Project="packaging.targets" />
+  <!-- For regenerating templates on build -->
+  <Import Project="..\common\t4.targets" />
+  <!--
+    This is a workaround for allowing neutral CTO resource produced from *.vsct to go in the main assembly.
+    We move the neutral *.cto file to be categorized as WithCulture=true,Culture=en to prevent the tools from falsely reporting:
+       error VSSDK1006: Two CTO files have the same Menus.ctmenu resource name.
+    Note that this categorization does not apply to the items that actually produce the .resources.dll and so it will
+    not cause an English satellite to be generated.
+    The documented way around this is to put all resources (including neutral/en) in satellites:
+       https://msdn.microsoft.com/en-us/library/ee943168.aspx
+       However, that has consequences we do not want:
+        - It breaks resx code-gen to *.designer.cs
+        - It causes extra dll loads in en case
+        - If we ever split satellites in to language packs, the english fallback satellites would become a special case.
+  -->
+  <Target Name="AssignEnCultureToNeutralCto" BeforeTargets="MergeCtoResource">
+    <ItemGroup>
+      <_GeneratedCTOFilesWithCulture Include="@(_GeneratedCTOFilesWithNoCulture)">
+        <Culture>en</Culture>
+        <WithCulture>true</WithCulture>
+      </_GeneratedCTOFilesWithCulture>
+      <_GeneratedCTOFilesWithNoCulture Remove="@(_GeneratedCTOFilesWithNoCulture)" />
+      <_ResourcesToMergeWithCTOWithCultureMetadata Condition="'%(WithCulture)' != 'true'">
+        <Culture>en</Culture>
+        <WithCulture>true</WithCulture>
+      </_ResourcesToMergeWithCTOWithCultureMetadata>
+    </ItemGroup>
+  </Target>
+</Project>

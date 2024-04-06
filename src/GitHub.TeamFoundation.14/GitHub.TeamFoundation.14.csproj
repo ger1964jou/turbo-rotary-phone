@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>$(MSBuildToolsVersion)</MinimumVisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">$(MSBuildToolsVersion)</VisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{161DBF01-1DBF-4B00-8551-C5C00F26720D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GitHub.TeamFoundation</RootNamespace>
+    <AssemblyName>GitHub.TeamFoundation.14</AssemblyName>
+    <LangVersion>7.3</LangVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE;TEAMEXPLORER14</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE;TEAMEXPLORER14</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\src\common\signing.props" />
+  <ItemGroup>
+    <Reference Include="Microsoft.TeamFoundation.Common">
+      <HintPath>..\..\lib\14.0\Microsoft.TeamFoundation.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Client">
+      <HintPath>..\..\lib\14.0\Microsoft.TeamFoundation.Client.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Controls">
+      <HintPath>..\..\lib\14.0\Microsoft.TeamFoundation.Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Git.Controls">
+      <HintPath>..\..\lib\14.0\Microsoft.TeamFoundation.Git.Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Git.Provider">
+      <HintPath>..\..\lib\14.0\Microsoft.TeamFoundation.Git.Provider.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Services\VSGitExt.cs" />
+    <Compile Include="Home\ForkNavigationItem.cs" />
+    <Compile Include="RegistryHelper.cs" />
+    <Compile Include="Services\VSGitServices.cs" />
+    <Compile Include="Services\VSUIContextFactory.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Base\EnsureLoggedInSection.cs" />
+    <Compile Include="Base\TeamExplorerInvitationBase.cs" />
+    <Compile Include="Base\TeamExplorerNavigationItemBase.cs" />
+    <Compile Include="Base\TeamExplorerSectionBase.cs" />
+    <Compile Include="Base\TeamExplorerServiceHolder.cs" />
+    <Compile Include="Connect\GitHubConnectSection.cs" />
+    <Compile Include="Connect\GitHubConnectSection0.cs" />
+    <Compile Include="Connect\GitHubConnectSection1.cs" />
+    <Compile Include="Connect\GitHubInvitationSection.cs" />
+    <Compile Include="Home\GitHubHomeSection.cs" />
+    <Compile Include="Home\GraphsNavigationItem.cs" />
+    <Compile Include="Home\IssuesNavigationItem.cs" />
+    <Compile Include="Home\PullRequestsNavigationItem.cs" />
+    <Compile Include="Home\PulseNavigationItem.cs" />
+    <Compile Include="Home\WikiNavigationItem.cs" />
+    <Compile Include="Sync\EnsureLoggedInSectionSync.cs" />
+    <Compile Include="Sync\GitHubPublishSection.cs" />
+    <Compile Include="Services\TeamExplorerServices.cs" />
+    <Compile Include="..\common\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\submodules\octokit.net\Octokit\Octokit.csproj">
+      <Project>{08dd4305-7787-4823-a53f-4d0f725a07f3}</Project>
+      <Name>Octokit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\submodules\reactiveui\src\ReactiveUI.Wpf\ReactiveUI.Wpf.csproj">
+      <Project>{e899b03c-6e8e-4375-ab65-fc925d721d8b}</Project>
+      <Name>ReactiveUI.Wpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\submodules\reactiveui\src\ReactiveUI\ReactiveUI.csproj">
+      <Project>{a4f579f3-77d3-450a-aacc-f2653ef11e69}</Project>
+      <Name>ReactiveUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\submodules\splat\src\Splat\Splat.csproj">
+      <Project>{ad0306b7-f88e-44a4-ab36-1d04822e9234}</Project>
+      <Name>Splat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.Api\GitHub.Api.csproj">
+      <Project>{b389adaf-62cc-486e-85b4-2d8b078df763}</Project>
+      <Name>GitHub.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.App\GitHub.App.csproj">
+      <Project>{1A1DA411-8D1F-4578-80A6-04576BEA2DC5}</Project>
+      <Name>GitHub.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.Exports.Reactive\GitHub.Exports.Reactive.csproj">
+      <Project>{E4ED0537-D1D9-44B6-9212-3096D7C3F7A1}</Project>
+      <Name>GitHub.Exports.Reactive</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.Exports\GitHub.Exports.csproj">
+      <Project>{9aea02db-02b5-409c-b0ca-115d05331a6b}</Project>
+      <Name>GitHub.Exports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.Extensions\GitHub.Extensions.csproj">
+      <Project>{6afe2e2d-6db0-4430-a2ea-f5f5388d2f78}</Project>
+      <Name>GitHub.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.Logging\GitHub.Logging.csproj">
+      <Project>{8d73575a-a89f-47cc-b153-b47dd06837f0}</Project>
+      <Name>GitHub.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.Resources\GitHub.Resources.csproj">
+      <Project>{54e8d71a-aabb-4698-95fe-7f11612b8e59}</Project>
+      <Name>GitHub.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHub.VisualStudio.UI\GitHub.VisualStudio.UI.csproj">
+      <Project>{d1dfbb0c-b570-4302-8f1e-2e3a19c41961}</Project>
+      <Name>GitHub.VisualStudio.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EnvDTE">
+      <Version>8.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="LibGit2Sharp" Version="0.26.0" />
+    <PackageReference Include="Microsoft.VisualStudio.ComponentModelHost">
+      <Version>14.0.25424</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Shell.14.0">
+      <Version>14.3.25407</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Threading">
+      <Version>14.1.131</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog">
+      <Version>2.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="SerilogAnalyzer">
+      <Version>0.12.0</Version>
+    </PackageReference>
+    <PackageReference Include="Stateless">
+      <Version>2.5.56</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reactive">
+      <Version>4.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,29 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+  <PropertyGroup>
+    <TargetFramework>net46</TargetFramework>
+    <RootNamespace>GitHub</RootNamespace>
+    <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <Import Project="$(SolutionDir)\src\common\signing.props" />
+
+  <ItemGroup>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\submodules\reactiveui\src\ReactiveUI.Events.WPF\ReactiveUI.Events.WPF.csproj" />
+    <ProjectReference Include="..\GitHub.Exports.Reactive\GitHub.Exports.Reactive.csproj" />
+    <ProjectReference Include="..\GitHub.UI\GitHub.UI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ix_Experimental-Main" version="1.1.10823" />
+  </ItemGroup>
+</Project>
